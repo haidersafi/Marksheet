@@ -1,25 +1,34 @@
+import React,{Component} from 'react'
 import logo from './logo.svg';
+import Marksheet from './Component/Marksheet/Marksheet';
+
+
+
 import './App.css';
 
-function App() {
+class App extends Component {
+  constructor(props){
+    super(props)
+  this.state={
+    rollNo:""
+  }}
+ 
+  submitRollNo=()=>{
+    let inputVal=document.getElementById("inputVal");
+  if(inputVal.value){this.setState({rollNo:inputVal.value})
+  inputVal.value=""}
+  else{ return null}
+  }
+  
+  render(){
+    
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <input type="text"  id="inputVal" placeholder="Enter RollNo"/>
+      <button type="submit" onClick={this.submitRollNo}>View Marksheet</button>
+    {this.state.rollNo?<Marksheet rollNo={this.state.rollNo}/>:null}
+      </div>
+  );}
 }
 
 export default App;
